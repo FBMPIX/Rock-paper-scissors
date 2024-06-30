@@ -1,4 +1,4 @@
-// Array Displays the choices
+// Array holds the choices
 let choiceArray = ["Rock", "Paper", "Scissors"];
 
 let userInput = parseInt(prompt("Enter your choice(number): \n1.Rock \n2.Paper \n3.Scissors \n---Reload the site to play again---"));
