@@ -1,75 +1,120 @@
 html, body {
-    background-color: grey;
-    height: 90%;
+    background-color: rgb(84, 111, 116);
+    height: 100%; /* Use 100% to fill the viewport */
     width: 100%;
     padding: 0;
     margin: 0;
 }
 
-div {
-    outline: solid;
-    border-color:black;
-}
 
 /* Title */
 .title {
+    color: white;
+    font-size: 2rem; /* Use rem for scalability */
     text-align: center;
-    margin: 50px;
-    padding: 20px;
+    margin: 0 5%; /* Use percentage for responsive margins */
+    border: none; 
+    border-bottom: 5px solid black; 
 }
 
 /* Body */
 .body {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
-    height: calc(90vh - 200px); 
-    margin: 0px 10px;
-    padding: 20px;
+    justify-content: space-between;
+    height: auto; /* Dynamic height based on viewport */
+    margin: 0 5%; /* Use percentage for responsive margins */
+    padding: 1rem; /* Use rem for consistent spacing */
 }
 
+/* Bot and Player */
 .player, .bot {
     display: flex;
     width: auto;
-    flex-direction: row;
-    align-items:center;
     justify-content: space-between;
 }
 
 .player div, .bot div {
+    display: flex; 
+    width: 20%; 
+    height: 15rem;
+    margin: 10px;
+    background-color: white; 
+    cursor: pointer;
+}
+
+.rock, .paper, .scissors {
+    background-position: center; 
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.rock {
+    background-image: url("img/rock.png");
+}
+.paper {
+    background-image: url("img/paper.png");
+}
+.scissors {
+    background-image: url("img/scissors.png");
+}
+
+/* Displaying Results */
+.results {
     display: flex;
-    justify-content: center; 
-    align-items: center;     
+    flex-direction: row;
+    justify-content: flex-start; /* Align to the left */
+    align-items: center; /* Center vertically */
+}
+
+.results .leftAlign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically in the column */
+    margin-right: 20px; /* Space between left-aligned items and textContainer */
+}
+
+.results .textContainer {
+    display: flex;
+    align-items: center; /* Center textContainer contents vertically */
+    justify-content: center; /* Center textContainer contents horizontally */
+    height: 100%; /* Set to auto for flexible height */
+    width: 50%;
+    margin-left: 250px;
+}
+
+.playerWins, .botWins {
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    align-items: center;
+    font-size: 5rem; /* Use rem for scalability */
     width: 200px; 
     height: 200px; 
     margin: 10px;
-    border: 2px solid black;
-    background-color: white; 
 }
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .title {
-        font-size: 18px; /* Smaller font size for smaller screens */
-        margin: 20px;
-        padding: 10px;
+        font-size: 1.5rem; 
+        margin: 2rem 5%; /* Responsive margins */
+        padding: 0.5rem;
     }
 
     .body {
-        height: calc(100vh - 200px); /* Adjust height for smaller screens */
+        height: calc(80vh - 100px); /* Adjust height for medium screens */
     }
 
     .player div, .bot div {
-        flex: 1 1 150px; /* Adjust size for smaller screens */
+        flex: 1 1 150px; 
         max-width: 150px;
     }
 }
 
 @media (max-width: 480px) {
     .player div, .bot div {
-        flex: 1 1 100px; /* Further adjust size for very small screens */
+        flex: 1 1 100px; 
         max-width: 100px;
-        height: 100px; /* Adjust height for very small screens */
+        height: 100px; 
     }
 }
