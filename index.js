@@ -1,5 +1,7 @@
-
 const CHOICES = ["Rock", "Paper", "Scissors"];
+
+let amountOfRounds = parseInt(prompt("How many rounds would you like to play?"));
+
 // Function to determine winner
 function playRound (user, bot) {
     if (user === bot) {
@@ -20,6 +22,37 @@ let userRoundsWon = 0;
 let botRoundsWon = 0;
 let numberOfTies = 0;
 
+for (let roundCounter = 1; roundCounter <= amountOfRounds; roundCounter++) {
+    let UserInput = parseInt(
+        prompt(`
+        1-Rock 
+        2-Paper
+        3-Scissors
+        `));
+    let botIndex = Math.floor(Math.random() * 3);
 
+    let botChoice = CHOICES[botIndex];
+    let userChoice = CHOICES[UserInput -1];
 
+    let result = playRound(userChoice, botChoice);
+    
+    if (result === "User wins!") {
+        userRoundsWon++;
+    } else if (result === "Bot wins!") {
+        botRoundsWon++;
+    } else {
+        numberOfTies+=1;
+    }
+    
+    alert(`
+        ---- Round ${roundCounter} ----
+        Bot Choice: ${botChoice} 
+        User Choice: ${userChoice} 
 
+        ---- Results: ${result} ----
+
+        Bot Rounds Won: ${botRoundsWon} 
+        User Rounds Won: ${userRoundsWon} 
+        Number of ties: ${numberOfTies} 
+    `);
+}
