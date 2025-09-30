@@ -1,58 +1,50 @@
-const CHOICES = ["Rock", "Paper", "Scissors"];
+const choices = ["rock", "paper", "scissors"];
 
-let amountOfRounds = parseInt(prompt("How many rounds would you like to play?"));
+let roundCount = 0;
+let userWinCounter = 0;
+let botWinCounter = 0;
+let tiesCounter = 0;
 
-// Function to determine winner
-function playRound (user, bot) {
+const userOptions =       document.body.querySelector("#userOptions");
+const userButtons =       document.body.querySelectorAll("#userOptions button")
+const userWins =          document.body.querySelector("#userWins");
+const botWins =           document.body.querySelector("#botWins");
+const ties =              document.body.querySelector("#ties");
+const displayUserChoice = document.body.querySelector("#displayChoice #userChoice");
+const displayBotChoice =  document.body.querySelector("#displayChoice #botChoice");
+const displayGameWinner = document.body.querySelector("#displayChoice #gameWinner");
+const displayRound =      document.body.querySelector("h1");
+
+function determineWinner(user, bot) {
     if (user === bot) {
-        return "It's a tie!";
+        return "tie";
     } else if (    
-        (user === "Rock" && bot === "Scissors") ||
-        (user === "Paper" && bot === "Rock") ||
-        (user === "Scissors" && bot === "Paper")) 
+        (user === "rock" && bot === "scissors") ||
+        (user === "paper" && bot === "rock") ||
+        (user === "scissors" && bot === "paper")) 
     {
-        return "User wins!";
+        return "user";
     } else {
-        return "Bot wins!";
+        return "bot";
     }  
 }
 
-let roundCounter = 0;
-let userRoundsWon = 0;
-let botRoundsWon = 0;
-let numberOfTies = 0;
+userButtons.forEach((button) => {
+    let grabInnerText = (button.textContent).toLowerCase();
 
-for (let roundCounter = 1; roundCounter <= amountOfRounds; roundCounter++) {
-    let UserInput = parseInt(
-        prompt(`
-        1-Rock 
-        2-Paper
-        3-Scissors
-        `));
-    let botIndex = Math.floor(Math.random() * 3);
+    button.addEventListener("click", () =>{
+        let botOption = choices[Math.floor(Math.random() * 3)];
+        displayRound.textContent = `Round: ${roundCount+=1}`;
+        displayUserChoice.textContent = `USER: ${grabInnerText}`;
+        displayBotChoice.innerText = `BOT: ${botOption}`
 
-    let botChoice = CHOICES[botIndex];
-    let userChoice = CHOICES[UserInput -1];
-
-    let result = playRound(userChoice, botChoice);
-    
-    if (result === "User wins!") {
-        userRoundsWon++;
-    } else if (result === "Bot wins!") {
-        botRoundsWon++;
-    } else {
-        numberOfTies+=1;
-    }
-    
-    alert(`
-        ---- Round ${roundCounter} ----
-        Bot Choice: ${botChoice} 
-        User Choice: ${userChoice} 
-
-        ---- Results: ${result} ----
-
-        Bot Rounds Won: ${botRoundsWon} 
-        User Rounds Won: ${userRoundsWon} 
-        Number of ties: ${numberOfTies} 
-    `);
-}
+        if((determineWinner(grabInnerText, botOption)) === "tie"){
+            ties.innerHTML = `Ties: ${tiesCounter+=1}`
+        }else if((determineWinner(grabInnerText, botOption)) === "user") {
+            userWins.textContent = `User Wins: ${userWinCounter+=1}`;
+        } else { 
+            botWins.textContent = `Bot Wins: ${botWinCounter+=1}`;
+        }
+        displayGameWinner.innerText = `WINNER: ${determineWinner(grabInnerText, botOption)}`;
+    });
+});

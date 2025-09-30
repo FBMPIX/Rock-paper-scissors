@@ -1,35 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="index.css">
-    <!-- <script src="index.js" defer></script> -->
-</head>
-<body>
-    <div class="title">
-        <h1>Rock Paper Scissors</h1>
-    </div>
-    <div class="body">
-        <div class="player">
-            <div class="rock"><span></span></div>
-            <div class="paper"><span></span></div>
-            <div class="scissors"><span></span></div>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <h1>Round: </h1>
+        <span id="userWins">User Wins: </span>
+        <span id="ties">Ties: </span>
+        <span id="botWins">Bot Wins: </span> 
+        
+        <div id="userOptions">
+            <button>Rock</button>
+            <button>Paper</button>
+            <button>Scissors</button>
         </div>
-
-        <div class="results">
-            <div class="leftAlign">
-                <div class="playerWins"> <span>0</span> </div>
-                <div class="botWins"> <span>0</span> </div>
-            </div>
-            <div class="textContainer"></div>
+        <div id="displayChoice">
+            <p id="userChoice">USER:</p>
+            <br> <p id="gameWinner">WINNER:</p> <br>
+            <p id="botChoice">BOT:</p>
         </div>
-        <div class="bot">
-            <div class="rock"><span></span></div>
-            <div class="paper"><span></span></div>
-            <div class="scissors"><span></span></div>
-        </div>
-    </div>
-</body>
+        <script src="index.js" async defer></script>
+    </body>
 </html>
